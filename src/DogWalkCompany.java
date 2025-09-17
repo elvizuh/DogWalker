@@ -1,5 +1,23 @@
+import java.util.Scanner;
+
 public class DogWalkCompany
 {
+    private int[] schedule;
+
+    public DogWalkCompany() {
+        schedule = new int[24];
+    }
+
+    public int addDogs(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("What hour?");
+        int hour = s.nextInt();
+        System.out.println("How many dogs?");
+        int dogs = s.nextInt();
+        schedule[hour] = dogs;
+        return hour;
+    }
+
     /**
      * Returns the number of dogs, always greater than 0, that are available
      * for a walk during the time specified by hour
@@ -7,21 +25,7 @@ public class DogWalkCompany
      */
     public int numAvailableDogs(int hour)
     {
-        if (hour <= 6)
-        {
-            return (int)((Math.random() * 2) + 1);
-        }
-        else if (hour <= 12)
-        {
-            return (int)((Math.random() * 7) + 1);
-        }
-        else if (hour <= 18)
-        {
-            return (int)((Math.random() * 5) + 1);
-        }
-        else {
-            return (int)((Math.random() * 3) + 1);
-        }
+        return schedule[hour];
     }
 
     /**
@@ -32,7 +36,13 @@ public class DogWalkCompany
      */
     public void updateDogs(int hour, int numberDogsWalked)
     {
-        int dogsNeededToBeWalked = numAvailableDogs(hour);
-        dogsNeededToBeWalked -= numberDogsWalked;
+        schedule[hour] -= numberDogsWalked;
+    }
+
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < schedule.length; i++)
+            s += i + " " + schedule[i] + "\n";
+        return s;
     }
 }

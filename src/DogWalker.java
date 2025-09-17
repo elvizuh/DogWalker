@@ -29,7 +29,7 @@ public class DogWalker {
     public int walkDogs(int hour)
     {
         int dogsAvailable = company.numAvailableDogs(hour);
-        int dogsBeingWalked = maxDogs >= dogsAvailable ? dogsAvailable : dogsAvailable - maxDogs;
+        int dogsBeingWalked = Math.min(maxDogs, dogsAvailable);
         company.updateDogs(hour, dogsBeingWalked);
         return dogsBeingWalked;
     }
@@ -45,7 +45,7 @@ public class DogWalker {
         int currentHour = startHour;
         int totalEarned = 0;
 
-        while(currentHour != endHour + 1)
+        while(currentHour <= endHour)
         {
             int dogsBeingWalked = walkDogs(currentHour);
 
