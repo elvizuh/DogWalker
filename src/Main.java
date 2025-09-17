@@ -8,6 +8,7 @@ public class Main
         System.out.println(company);
         int hour = company.addDogs();
         System.out.println(company);
+
         DogWalker walker = new DogWalker(4, company);
         System.out.println(walker.walkDogs(hour) + " dogs walked.");
         System.out.println(company.numAvailableDogs(hour) + " dogs remaining.");
